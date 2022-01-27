@@ -1,0 +1,137 @@
+/* -------------------  MOBILE  --------------------- */
+@media (max-width: 768px){
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  min-height: 100vh;
+  background-color: #86bbd8;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  border: 2px solid #33658a;
+  background-color: skyblue;
+}
+.roverInfo {
+  margin-top: 16%;
+  margin-left: 2%;
+}
+
+#photoDate {
+  align-items: center;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+#info {
+  font-size: 25px ;
+}
+
+img {
+  width: 95%;
+  height: 80%;
+  margin-top: 10px;
+  border: 4px solid #33658a;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+#navbar_list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #33658a;
+  align-items: center;
+}
+
+.nav-item {
+  padding: 2%;
+  border-right: 2px solid #86bbd8;
+  border-left: 2px solid #86bbd8;
+  position: relative;
+  color: whitesmoke;
+  width: 128.04px;
+  text-align: center;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+}
+
+/* -------------------  DESKTOP  -------------------- */
+@media (max-width: 1824px ) {
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial;
+    min-height: 100vh;
+    background-color: #86bbd8;
+  }
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    border: 2px solid #33658a;
+    background-color: skyblue;
+  }
+  .roverInfo {
+    margin-top: 16%;
+    margin-left: 2%;
+  }
+  
+  #photoDate {
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 15%;
+  }
+  
+  #info {
+    font-size: 25px ;
+  }
+  
+  img {
+    width: 95%;
+    height: 80%;
+    margin-top: 10px;
+    border: 4px solid #33658a;
+  }
+  
+  main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  #navbar_list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #33658a;
+    align-items: center;
+  }
+  
+  .nav-item {
+    padding: 2%;
+    border-right: 2px solid #86bbd8;
+    border-left: 2px solid #86bbd8;
+    position: relative;
+    color: whitesmoke;
+    width: 128.04px;
+    text-align: center;
+  }
+  
+  .nav-item:hover {
+    cursor: pointer;
+  }
+}
+
