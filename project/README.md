@@ -3,13 +3,6 @@
 This project has been created using **webpack-cli**, you can now run
 
 ```
-npm run build
-```
+yarn build, and then, you have to run yarn start.
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+The server is located in http://localhost:3000.
