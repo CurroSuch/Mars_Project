@@ -1,10 +1,9 @@
-
-let store = Immutable.Map({
-    user: { name: "Student" },
+let store = {
+    user: Immutable.Map({ name: "Student" }),
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
     chosenRover: 'Curiosity'
-})
+}
 
 const getImageOfTheDay = (state) => {
     let { apod, chosenRover } = state
@@ -62,7 +61,7 @@ const App = (state) => {
     return `
     <header></header>
     <main>
-        Welcome Student!!
+        <strong id='mainMessage'>Welcome Student!!</strong>
         <section>
             <ul class='navbar_menu' id='navbar_list'>
                 <li class='nav-item' id='nav-item1'>Curiosity</li>
@@ -153,4 +152,3 @@ const roversText = () => {
     }
 }
 // ------------------------------------------------------  API CALLS
-
