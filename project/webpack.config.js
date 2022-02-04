@@ -1,14 +1,17 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from 'path'
+import {fileURLToPath} from 'url';
 
-
-const HtmlWebpackPlugin = require ('html-webpack-plugin')
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isProduction = process.env.NODE_ENV == "production";
 
 const stylesHandler = "style-loader";
 
 const config = {
-  entry: "./src/public/client.js",
+  entry: "./src/public/main.js",
   devServer: {
     open: true,
     host: "localhost",
@@ -21,6 +24,11 @@ const config = {
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    publicPath: "",
+  },
   module: {
     rules: [
       {
