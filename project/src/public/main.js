@@ -11,12 +11,11 @@ let store = Immutable.Map({
 
 const getImageOfTheDay = (state) => {
     let chosenRover = state.get('chosenRover')
-    console.log(chosenRover)
     fetch(`http://localhost:3000/apod/${chosenRover}`)
         .then(res => res.json())
         .then(apod => {
             apod.chosenRover = chosenRover;
-            updateStore(store, { apod })
+            updateStore(state, { apod })
         })
 }
 
@@ -26,7 +25,14 @@ const root = document.getElementById('root')
 // High Order Function
 const createUpdateStore = (renderFn) => {
     const updateStore = (store, newState) => {
-        store = store.mergeDeep(newState)
+        console.log('newState', newState)
+        if (newState.apod){
+        store = store.set('apod', newState.apod)
+
+        }   else if (newState.chosenRover) {
+           store =  store.set('chosenRover', newState.chosenRover)
+        }
+        console.log('1243', store)
         renderFn(store)
     }
     return updateStore
@@ -34,13 +40,13 @@ const createUpdateStore = (renderFn) => {
 
 const updateStore = createUpdateStore( (store) => render(root, store))
 
-const render = async (root, state) => {
+const render = (root, state) => {
     root.innerHTML = App(state)
 
     let curiosityButton = document.getElementById('nav-item1')
     if(curiosityButton) {
     curiosityButton.addEventListener('click', function changeRover(){
-        updateStore(store, {
+        updateStore(state, {
             chosenRover : 'Curiosity'
         })
     })
@@ -49,7 +55,7 @@ const render = async (root, state) => {
     let opportunityButton = document.getElementById('nav-item2')
     if(opportunityButton){
     opportunityButton.addEventListener('click', function changeRover(){
-        updateStore(store, {
+        updateStore(state, {
             chosenRover: 'Opportunity'
         })
     })
@@ -58,7 +64,7 @@ const render = async (root, state) => {
     let spiritButton = document.getElementById('nav-item3')
     if(spiritButton){
     spiritButton.addEventListener('click', function changeRover(){
-        updateStore(store, {
+        updateStore(state, {
             chosenRover: 'Spirit'
         })
     })
@@ -98,12 +104,9 @@ const App = (state) => {
 
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', () => {
+    console.log('load')
     render(root, store)
 })
-
-// ------------------------------------------------------  COMPONENTS
-
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
 
 // Example of a pure function that renders infomation requested from the backend
 const ImageOfTheDay = (apod, store) => {
@@ -128,7 +131,7 @@ const ImageOfTheDay = (apod, store) => {
     }
 }}
 
-const roversData = (apod) => {
+const roversData = (apod) => { console.log(apod)
     if(apod){
         return (`<div class='roverInfo' id='roverName'>Rover's name: ${apod.images.photos[0].rover.name}.</div>
                 <div class='roverInfo' id='launchDate'>Launch Date: ${apod.images.photos[0].rover.launch_date}.</div>
@@ -138,11 +141,12 @@ const roversData = (apod) => {
 }
 
 const roversName = (store) => {
-    if(store.get('chosenRover') == 'Curiosity'){
+    const chosenRover = store.get('chosenRover')
+    if(chosenRover == 'Curiosity'){
         return `Curiosity Rover.`
-    } else if (store.get('chosenRover') == 'Opportunity') {
+    } else if (chosenRover == 'Opportunity') {
         return `Opportunity Rover.`
-    } else if (store.get('chosenRover') == 'Spirit'){
+    } else if (chosenRover == 'Spirit'){
         return `Spirit Rover.`
     }
 }
@@ -163,3 +167,5 @@ const roversText = (store) => {
         In May 2009, the rover became embedded in soft soil at a site called "Troy" with only five working wheels to aid in the rescue effort. After months of testing and carefully planned maneuvers, NASA ended efforts to free the rover and eventually ended the mission on May 25, 2011.`
     }
 }
+
+
